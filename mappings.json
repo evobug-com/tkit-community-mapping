@@ -1,5 +1,11 @@
 {
-  "version": "1.0.0",
-  "lastUpdated": "2025-01-15T00:00:00Z",
-  "mappings": []
+  "mappings": [
+    {
+      "processName": "warp.exe",
+      "twitchCategoryId": "1469308723",
+      "twitchCategoryName": "Software and Game Development",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-11"
+    }
+  ]
 }
