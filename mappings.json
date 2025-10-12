@@ -20,6 +20,16 @@
       "twitchCategoryName": "R.E.P.O.",
       "verificationCount": 1,
       "lastVerified": "2025-10-12"
+    },
+    {
+      "processName": "yakisoba-win64-shipping",
+      "normalizedInstallPaths": [
+        "steamapps/common/starshiptroopersextermination/yakisoba/binaries/win64"
+      ],
+      "twitchCategoryId": "1734202623",
+      "twitchCategoryName": "Starship Troopers: Extermination",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-12"
     }
   ]
 }
