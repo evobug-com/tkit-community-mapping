@@ -1,5 +1,11 @@
 {
-  "version": "1.0.0",
-  "lastUpdated": "2025-01-15T00:00:00Z",
-  "mappings": []
+  "mappings": [
+    {
+      "processName": "bf6.exe",
+      "twitchCategoryId": "168648543",
+      "twitchCategoryName": "BATTLEFIELD 6",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-12"
+    }
+  ]
 }
