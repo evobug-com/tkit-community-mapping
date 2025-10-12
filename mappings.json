@@ -1,21 +1,21 @@
 {
   "mappings": [
     {
-      "processName": "bf6.exe",
+      "processName": "bf6",
       "twitchCategoryId": "168648543",
       "twitchCategoryName": "BATTLEFIELD 6",
       "verificationCount": 1,
       "lastVerified": "2025-10-12"
     },
     {
-      "processName": "Phasmophobia.exe",
+      "processName": "Phasmophobia",
       "twitchCategoryId": "518184",
       "twitchCategoryName": "Phasmophobia",
       "verificationCount": 1,
       "lastVerified": "2025-10-12"
     },
     {
-      "processName": "REPO.exe",
+      "processName": "REPO",
       "twitchCategoryId": "1294658629",
       "twitchCategoryName": "R.E.P.O.",
       "verificationCount": 1,
