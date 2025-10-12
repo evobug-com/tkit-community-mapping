@@ -31,6 +31,17 @@
       "source": "community"
     },
     {
+      "processName": "nuclearnightmare-win64-shipping",
+      "normalizedInstallPaths": [
+        "steamapps/common/nuclear nightmare/nuclearnightmare/binaries/win64"
+      ],
+      "twitchCategoryId": "1673899638",
+      "twitchCategoryName": "Nuclear Nightmare",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-12",
+      "source": "community"
+    },
+    {
       "processName": "peak",
       "normalizedInstallPaths": [
         "steamapps/common/peak"
