@@ -20,6 +20,17 @@
       "source": "community"
     },
     {
+      "processName": "helldivers2",
+      "normalizedInstallPaths": [
+        "steamapps/common/helldivers 2/bin"
+      ],
+      "twitchCategoryId": "766571430",
+      "twitchCategoryName": "HELLDIVERS 2",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-12",
+      "source": "community"
+    },
+    {
       "processName": "lethal company",
       "normalizedInstallPaths": [
         "steamapps/common/lethal company"
