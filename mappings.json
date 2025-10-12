@@ -212,6 +212,17 @@
       "source": "community"
     },
     {
+      "processName": "witcher3",
+      "normalizedInstallPaths": [
+        "steamapps/common/the witcher 3/bin/x64_dx12"
+      ],
+      "twitchCategoryId": "115977",
+      "twitchCategoryName": "The Witcher 3: Wild Hunt",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13",
+      "source": "community"
+    },
+    {
       "processName": "yakisoba-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/starshiptroopersextermination/yakisoba/binaries/win64"
