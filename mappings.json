@@ -64,6 +64,17 @@
       "source": "community"
     },
     {
+      "processName": "headliners-win64-shipping",
+      "normalizedInstallPaths": [
+        "steamapps/common/headliners/headliners/binaries/win64"
+      ],
+      "twitchCategoryId": "1853781077",
+      "twitchCategoryName": "The Headliners",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-12",
+      "source": "community"
+    },
+    {
       "processName": "helldivers2",
       "normalizedInstallPaths": [
         "steamapps/common/helldivers 2/bin"
