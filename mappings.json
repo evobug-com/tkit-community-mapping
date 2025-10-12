@@ -42,6 +42,17 @@
       "source": "community"
     },
     {
+      "processName": "cyberpunk2077",
+      "normalizedInstallPaths": [
+        "steamapps/common/cyberpunk 2077/bin/x64"
+      ],
+      "twitchCategoryId": "65876",
+      "twitchCategoryName": "Cyberpunk 2077",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-12",
+      "source": "community"
+    },
+    {
       "processName": "eurotrucks2",
       "normalizedInstallPaths": [
         "steamapps/common/euro truck simulator 2/bin/win_x64"
