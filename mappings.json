@@ -119,6 +119,17 @@
       "source": "community"
     },
     {
+      "processName": "kfgame",
+      "normalizedInstallPaths": [
+        "steamapps/common/killingfloor2/binaries/win64"
+      ],
+      "twitchCategoryId": "460508",
+      "twitchCategoryName": "Killing Floor 2",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13",
+      "source": "community"
+    },
+    {
       "processName": "lethal company",
       "normalizedInstallPaths": [
         "steamapps/common/lethal company"
