@@ -1,6 +1,6 @@
 # TKit Community Mappings
 
-Community-sourced game-to-Twitch-category mappings for [TKit](https://github.com/evobug-com/TKitFlutter).
+Community-sourced game-to-Twitch-category mappings for [TKit](https://github.com/evobug-com/TKit).
 
 ## What is this?
 
@@ -135,7 +135,7 @@ Paths without recognized anchors (would expose usernames):
 
 ### Automatic Submission (Recommended)
 
-1. Install TKit from [releases](https://github.com/evobug-com/TKitFlutter/releases)
+1. Install TKit from [releases](https://github.com/evobug-com/TKit/releases)
 2. When TKit detects an unmapped game, it will show a dialog
 3. Search for the correct Twitch category
 4. Click "Save & Contribute" to submit automatically
@@ -449,9 +449,9 @@ This repository is consumed by:
 
 ## Support
 
-- **TKit Issues**: https://github.com/evobug-com/TKitFlutter/issues
+- **TKit Issues**: https://github.com/evobug-com/TKit/issues
 - **Mapping Issues**: https://github.com/evobug-com/tkit-community-mapping/issues
-- **Cloudflare Worker**: [Worker README](https://github.com/evobug-com/TKitFlutter/tree/main/cloudflare-worker)
+- **Cloudflare Worker**: [Worker README](https://github.com/evobug-com/TKit/tree/main/cloudflare-worker)
 
 ## License
 
