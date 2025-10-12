@@ -5,7 +5,8 @@
       "twitchCategoryId": "168648543",
       "twitchCategoryName": "BATTLEFIELD 6",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     },
     {
       "processName": "borderlands4",
@@ -15,7 +16,8 @@
       "twitchCategoryId": "1846512643",
       "twitchCategoryName": "Borderlands 4",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     },
     {
       "processName": "lethal company",
@@ -25,7 +27,8 @@
       "twitchCategoryId": "2085980140",
       "twitchCategoryName": "Lethal Company",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     },
     {
       "processName": "peak",
@@ -35,21 +38,24 @@
       "twitchCategoryId": "1081998272",
       "twitchCategoryName": "PEAK",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     },
     {
       "processName": "Phasmophobia",
       "twitchCategoryId": "518184",
       "twitchCategoryName": "Phasmophobia",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     },
     {
       "processName": "REPO",
       "twitchCategoryId": "1294658629",
       "twitchCategoryName": "R.E.P.O.",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     },
     {
       "processName": "yakisoba-win64-shipping",
@@ -59,7 +65,8 @@
       "twitchCategoryId": "1734202623",
       "twitchCategoryName": "Starship Troopers: Extermination",
       "verificationCount": 1,
-      "lastVerified": "2025-10-12"
+      "lastVerified": "2025-10-12",
+      "source": "community"
     }
   ]
 }
