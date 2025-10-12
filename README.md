@@ -25,26 +25,65 @@ When you submit or verify a mapping through TKit:
 - **Auto-Merge**: PRs are reviewed and merged by maintainers
 - **Community Benefit**: Updated mappings sync to all TKit users automatically
 
-## mappings.json Schema
+## Repository Structure
 
-All mappings are stored in [`mappings.json`](./mappings.json):
+This repository uses a **distributed file architecture** to prevent merge conflicts:
 
+```
+tkit-community-mapping/
+├── games/                    # Source of truth - each game has its own file
+│   ├── bf6.json
+│   ├── phasmophobia.json
+│   └── lethal-company.json
+└── mappings.json             # Auto-generated (merged from games/)
+```
+
+### How It Works
+
+1. **Individual Game Files** (`games/*.json`)
+   - Each game has its own JSON file named after its process name
+   - Contributors/automated PRs modify only one file
+   - **Zero merge conflicts** - each PR touches a different file
+
+2. **Auto-Generated Mappings** (`mappings.json`)
+   - Automatically merged from all `games/*.json` files via GitHub Action
+   - Regenerated on every push to `main` branch
+   - **Do not edit directly** - changes will be overwritten
+
+3. **TKit Client Sync**
+   - Downloads `mappings.json` every 6 hours
+   - No changes needed in the app
+
+### Editing Files
+
+- **To add/update a game**: Edit or create `games/{processName}.json`
+- **Never edit**: `mappings.json` (auto-generated)
+
+### Benefits of This Architecture
+
+✅ **Zero Merge Conflicts** - Each PR touches only one game file
+✅ **Clean Diffs** - Reviewers see exactly which game changed
+✅ **Scalable** - 1000+ games won't cause massive JSON diffs
+✅ **Easy Manual Editing** - Contributors can easily add/edit individual games
+✅ **Backward Compatible** - TKit clients still read `mappings.json`
+
+## Game File Schema (`games/*.json`)
+
+Individual game files are stored in [`games/`](./games/) directory. Each file contains a single game mapping:
+
+**Example: `games/dota2.json`**
 ```json
 {
-  "mappings": [
-    {
-      "processName": "dota2",
-      "normalizedInstallPaths": [
-        "steamapps/common/dota 2",
-        ".steam/steam/steamapps/common/dota 2"
-      ],
-      "twitchCategoryId": "29595",
-      "twitchCategoryName": "Dota 2",
-      "verificationCount": 5,
-      "lastVerified": "2025-10-12",
-      "source": "community"
-    }
-  ]
+  "processName": "dota2",
+  "normalizedInstallPaths": [
+    "steamapps/common/dota 2",
+    ".steam/steam/steamapps/common/dota 2"
+  ],
+  "twitchCategoryId": "29595",
+  "twitchCategoryName": "Dota 2",
+  "verificationCount": 5,
+  "lastVerified": "2025-10-12",
+  "source": "community"
 }
 ```
 
@@ -107,10 +146,12 @@ Paths without recognized anchors (would expose usernames):
 If you prefer to submit manually:
 
 1. Fork this repository
-2. Edit `mappings.json`:
+2. Create or edit a file in `games/` directory:
+   - Filename: `games/{processName}.json` (e.g., `games/dota2.json`)
+   - Content:
    ```json
    {
-     "processName": "game.exe",
+     "processName": "game",
      "normalizedInstallPaths": ["steamapps/common/game name"],
      "twitchCategoryId": "12345",
      "twitchCategoryName": "Game Name",
@@ -119,7 +160,8 @@ If you prefer to submit manually:
      "source": "community"
    }
    ```
-3. Submit a Pull Request with title: `Add mapping: game.exe → Game Name`
+3. Submit a Pull Request with title: `Add mapping: game → Game Name`
+4. The GitHub Action will automatically regenerate `mappings.json` when merged
 
 **Finding Twitch Category ID:**
 - Search on [Twitch](https://www.twitch.tv/directory)
@@ -143,34 +185,124 @@ Help improve accuracy by verifying existing mappings:
 - Correct Twitch category (exact match)
 - Process name with or without `.exe` (both work)
 - Privacy-safe paths only
-- One mapping per game executable
+- Multiple entries with same `processName` if they have different `normalizedInstallPaths`
 
 ### Rejections ❌
 
 - Incorrect category (will be closed)
-- Duplicate submissions (check existing mappings first)
+- Exact duplicate submissions (same processName AND same paths)
 - Paths containing usernames/personal folders
 - Test/spam submissions
 
 ## Path Merging
 
-When multiple users submit the same game from different platforms, paths are automatically merged:
+When multiple users submit/verify the same game from different platforms, the Cloudflare Worker automatically merges paths within the same game file:
+
+**Example: `games/game.json` evolution**
 
 ```json
 // User 1 submits Steam version
 {
-  "processName": "game.exe",
-  "normalizedInstallPaths": ["steamapps/common/game"]
+  "processName": "game",
+  "normalizedInstallPaths": ["steamapps/common/game"],
+  "verificationCount": 1
 }
 
-// User 2 verifies Epic version
+// User 2 verifies Epic version → Cloudflare Worker merges paths
 {
-  "processName": "game.exe",
-  "normalizedInstallPaths": ["steamapps/common/game", "epic games/game"]
+  "processName": "game",
+  "normalizedInstallPaths": ["steamapps/common/game", "epic games/game"],
+  "verificationCount": 2
 }
 ```
 
-Duplicates are automatically removed during merge.
+- Paths are merged within the **single game file**
+- Duplicates are automatically removed
+- GitHub Action then regenerates `mappings.json` with the updated game data
+
+## Handling Duplicate Process Names
+
+Some games use identical or generic executable names (e.g., `game.exe`, `launcher.exe`, `bf.exe`). TKit handles this through **path-based disambiguation**.
+
+### Multiple Games, Same Process Name
+
+When multiple games share the same process name, create **separate files using descriptive names**:
+
+```
+games/
+├── battlefield-2042-game.json     # processName: "game"
+└── fortnite-game.json             # processName: "game"
+```
+
+**Example: `games/battlefield-2042-game.json`**
+```json
+{
+  "processName": "game",
+  "normalizedInstallPaths": ["steamapps/common/battlefield 2042"],
+  "twitchCategoryId": "512710",
+  "twitchCategoryName": "Battlefield 2042",
+  "verificationCount": 3,
+  "lastVerified": "2025-10-12",
+  "source": "community"
+}
+```
+
+**Example: `games/fortnite-game.json`**
+```json
+{
+  "processName": "game",
+  "normalizedInstallPaths": ["epic games/fortnite"],
+  "twitchCategoryId": "33214",
+  "twitchCategoryName": "Fortnite",
+  "verificationCount": 5,
+  "lastVerified": "2025-10-12",
+  "source": "community"
+}
+```
+
+The GitHub Action merges both into `mappings.json` which will contain **multiple entries with the same `processName`** but different paths.
+
+### How TKit Resolves Conflicts
+
+When TKit detects a process (e.g., `game.exe`), it uses a **multi-step matching strategy**:
+
+1. **Path + Process Match** (Most Accurate)
+   - Extracts installation path: `C:\Epic Games\Fortnite\game.exe` → `epic games/fortnite`
+   - Searches for: `processName="game"` **AND** path contains `epic games/fortnite`
+   - Returns: **Fortnite** ✅
+
+2. **Process Name Match** (Fallback)
+   - If no path-based match found, matches by `processName` only
+   - Returns: **First matching entry** (may be incorrect)
+
+3. **Normalized Match** (Flexible Matching)
+   - Normalizes process name: `Game-Launcher.exe` → `gamelauncher`
+   - Compares normalized names for flexible matching
+
+### Edge Case: Custom Installation Paths
+
+If a game is installed in a custom location **without a recognizable platform anchor**:
+
+```
+C:\Users\John\MyGames\game.exe
+→ Path normalizer returns null (privacy protection)
+→ Only processName is stored
+→ May match incorrectly if multiple games share the name
+```
+
+**Solution:**
+- TKit will prompt the user if multiple matches exist
+- User can manually select the correct category
+- Store the correct mapping in local database to avoid future conflicts
+
+### Best Practices
+
+When submitting mappings for games with common process names:
+
+1. **Always include `normalizedInstallPaths`** if the game is from a recognized platform
+2. **Use specific path segments** (e.g., `steamapps/common/full game name`, not just `steamapps/common`)
+3. **Verify the paths** match what users will actually have installed
+4. **Document ambiguity** in PR description if you know multiple games use the same exe name
 
 ## Cross-Platform Notes
 
@@ -221,9 +353,12 @@ Simply review the PR description and merge if accurate.
 **Manual PR Review:**
 
 1. Verify Twitch category ID is correct
-2. Check for duplicates in `mappings.json`
-3. Ensure paths are privacy-safe (no usernames)
-4. Merge or request changes
+2. Check that the PR modifies a file in `games/` directory (not `mappings.json` directly)
+3. For games with common process names, verify:
+   - Filename is descriptive (e.g., `battlefield-2042-game.json` not just `game.json`)
+   - `normalizedInstallPaths` are specific enough to distinguish games
+4. Ensure paths are privacy-safe (no usernames)
+5. Merge the PR → GitHub Action will automatically regenerate `mappings.json`
 
 **Updating Mappings Manually:**
 
@@ -231,16 +366,19 @@ Simply review the PR description and merge if accurate.
 # Pull latest changes
 git pull origin main
 
-# Edit mappings.json
-# - Add new mappings alphabetically by processName
-# - Increment verificationCount for verified mappings
-# - Merge paths from different platforms
+# Create or edit a game file in games/ directory
+# Example: games/dota2.json
+nano games/dota2.json
 
 # Commit and push
-git add mappings.json
-git commit -m "Add/Update: [game names]"
+git add games/
+git commit -m "Add/Update: [game name]"
 git push origin main
+
+# GitHub Action will automatically regenerate mappings.json
 ```
+
+**DO NOT manually edit `mappings.json`** - it is auto-generated and changes will be overwritten.
 
 **Handling Invalid Submissions:**
 
@@ -263,9 +401,13 @@ TKit Client
 Cloudflare Worker API
     ↓ (Authenticates via GitHub App)
 GitHub REST API
-    ↓ (Creates branch + commits + PR)
+    ↓ (Creates branch + commits games/{game}.json + PR)
 This Repository
-    ↓ (Maintainer reviews + merges)
+    ↓ (Maintainer reviews + merges to main)
+GitHub Action: Merge Mappings
+    ↓ (Reads all games/*.json)
+    ↓ (Regenerates mappings.json)
+    ↓ (Commits to main)
 mappings.json Updated
     ↓ (6-hour sync cycle)
 All TKit Clients
