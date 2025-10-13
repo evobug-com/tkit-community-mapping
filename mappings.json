@@ -193,6 +193,14 @@
       "source": "community"
     },
     {
+      "processName": "rdr2",
+      "twitchCategoryId": "493959",
+      "twitchCategoryName": "Red Dead Redemption II",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13",
+      "source": "community"
+    },
+    {
       "processName": "readyornotsteam-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/ready or not/readyornot/binaries/win64"
