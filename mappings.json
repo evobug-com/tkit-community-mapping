@@ -212,6 +212,14 @@
       "source": "community"
     },
     {
+      "processName": "spider-man2",
+      "twitchCategoryId": "1967084783",
+      "twitchCategoryName": "Marvel's Spider-Man 2",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13",
+      "source": "community"
+    },
+    {
       "processName": "strinova-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/strinova/strinova/pm/binaries/win64"
