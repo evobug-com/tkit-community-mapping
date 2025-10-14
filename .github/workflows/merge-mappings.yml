@@ -169,8 +169,8 @@ jobs:
           if (fs.existsSync(outputFile)) {
             try {
               const existing = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
-              // Extract metadata fields (everything except 'programs')
-              const { programs: _, ...rest } = existing;
+              // Extract metadata fields (everything except 'mappings')
+              const { mappings: _, ...rest } = existing;
               metadata = rest;
             } catch (error) {
               console.warn('⚠️ Could not read existing programs.json metadata');
@@ -180,7 +180,7 @@ jobs:
           // Create final structure with preserved metadata
           const output = {
             ...metadata,
-            programs: programs
+            mappings: programs
           };
 
           // Write to programs.json
