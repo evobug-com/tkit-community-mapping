@@ -73,5 +73,76 @@
       "verificationCount": 1,
       "lastVerified": "2025-10-13"
     }
+  ],
+  "mappings": [
+    {
+      "processName": "chrome",
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "Google Chrome",
+      "category": "browser",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "discord",
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "Discord",
+      "category": "communication",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "epicgameslauncher",
+      "normalizedInstallPaths": [
+        "program files (x86)/epic games/launcher",
+        "epic games/launcher"
+      ],
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "Epic Games Launcher",
+      "category": "launcher",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "explorer",
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "Windows Explorer",
+      "category": "system",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "obs64",
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "OBS Studio",
+      "category": "streaming",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "socialclub",
+      "normalizedInstallPaths": [
+        "rockstar games/social club"
+      ],
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "Rockstar Social Club",
+      "category": "launcher",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "steam",
+      "normalizedInstallPaths": [
+        "program files (x86)/steam",
+        "program files/steam",
+        ".steam/steam",
+        ".local/share/steam"
+      ],
+      "twitchCategoryId": "IGNORE",
+      "twitchCategoryName": "Steam",
+      "category": "launcher",
+      "verificationCount": 1,
+      "lastVerified": "2025-10-13"
+    }
   ]
 }
