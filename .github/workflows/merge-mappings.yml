@@ -57,11 +57,6 @@ jobs:
                 process.exit(1);
               }
 
-              // Ensure source field exists
-              if (!mapping.source) {
-                mapping.source = 'community';
-              }
-
               mappings.push(mapping);
               console.log(`✅ Loaded ${file}: ${mapping.processName} → ${mapping.twitchCategoryName}`);
             } catch (error) {
