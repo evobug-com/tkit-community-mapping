@@ -1,7 +1,7 @@
 {
   "name": "Official TKit Programs Mappings",
-  "description": "System apps, launchers, browsers, and other programs to ignore",
+  "description": "System apps, anti-cheats, launchers, browsers, and other programs to ignore",
   "isReadOnly": true,
-  "submissionHookUrl": "https://tkit-community-api.siocom.workers.dev",
+  "submissionHookUrl": "https://tkit-community-api.siocom.workers.dev?category=program",
   "mappings": []
 }
