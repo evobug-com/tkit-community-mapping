@@ -75,8 +75,22 @@ jobs:
             a.processName.toLowerCase().localeCompare(b.processName.toLowerCase())
           );
 
-          // Create final structure
+          // Read existing mappings.json to preserve metadata
+          let metadata = {};
+          if (fs.existsSync(outputFile)) {
+            try {
+              const existing = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+              // Extract metadata fields (everything except 'mappings')
+              const { mappings: _, ...rest } = existing;
+              metadata = rest;
+            } catch (error) {
+              console.warn('⚠️ Could not read existing mappings.json metadata');
+            }
+          }
+
+          // Create final structure with preserved metadata
           const output = {
+            ...metadata,
             mappings: mappings
           };
 
@@ -155,8 +169,22 @@ jobs:
             a.processName.toLowerCase().localeCompare(b.processName.toLowerCase())
           );
 
-          // Create final structure
+          // Read existing programs.json to preserve metadata
+          let metadata = {};
+          if (fs.existsSync(outputFile)) {
+            try {
+              const existing = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
+              // Extract metadata fields (everything except 'programs')
+              const { programs: _, ...rest } = existing;
+              metadata = rest;
+            } catch (error) {
+              console.warn('⚠️ Could not read existing programs.json metadata');
+            }
+          }
+
+          // Create final structure with preserved metadata
           const output = {
+            ...metadata,
             programs: programs
           };
 
