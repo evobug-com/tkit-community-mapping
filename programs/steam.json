@@ -1,0 +1,14 @@
+{
+  "processName": "steam",
+  "normalizedInstallPaths": [
+    "program files (x86)/steam",
+    "program files/steam",
+    ".steam/steam",
+    ".local/share/steam"
+  ],
+  "twitchCategoryId": "IGNORE",
+  "twitchCategoryName": "Steam",
+  "category": "launcher",
+  "verificationCount": 1,
+  "lastVerified": "2025-10-13"
+}

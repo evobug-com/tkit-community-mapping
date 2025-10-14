@@ -31,11 +31,16 @@ This repository uses a **distributed file architecture** to prevent merge confli
 
 ```
 tkit-community-mapping/
-├── games/                    # Source of truth - each game has its own file
+├── games/                    # Game mappings - each game has its own file
 │   ├── bf6.json
 │   ├── phasmophobia.json
 │   └── lethal-company.json
-└── mappings.json             # Auto-generated (merged from games/)
+├── programs/                 # Ignored programs (launchers, system processes, etc.)
+│   ├── steam.json
+│   ├── discord.json
+│   └── explorer.json
+├── mappings.json             # Auto-generated (merged from games/)
+└── programs.json             # Auto-generated (merged from programs/)
 ```
 
 ### How It Works
@@ -45,19 +50,28 @@ tkit-community-mapping/
    - Contributors/automated PRs modify only one file
    - **Zero merge conflicts** - each PR touches a different file
 
-2. **Auto-Generated Mappings** (`mappings.json`)
-   - Automatically merged from all `games/*.json` files via GitHub Action
-   - Regenerated on every push to `main` branch
+2. **Ignored Programs** (`programs/*.json`)
+   - Non-game processes that should be automatically ignored
+   - Includes launchers (Steam, Epic), browsers, system processes, etc.
+   - These use `"twitchCategoryId": "IGNORE"` and include a `category` field
+   - See [`programs/README.md`](./programs/README.md) for details
+
+3. **Auto-Generated Files**
+   - `mappings.json` - Merged from all `games/*.json` files
+   - `programs.json` - Merged from all `programs/*.json` files
+   - Both regenerated automatically on every push to `main` branch
    - **Do not edit directly** - changes will be overwritten
 
-3. **TKit Client Sync**
-   - Downloads `mappings.json` every 6 hours
-   - No changes needed in the app
+4. **TKit Client Sync**
+   - Downloads both `mappings.json` and `programs.json` every 6 hours
+   - Programs are checked first - if matched, process is automatically ignored
+   - Games are then checked for actual game mappings
 
 ### Editing Files
 
 - **To add/update a game**: Edit or create `games/{processName}.json`
-- **Never edit**: `mappings.json` (auto-generated)
+- **To add an ignored program**: Edit or create `programs/{processName}.json`
+- **Never edit**: `mappings.json` or `programs.json` (both auto-generated)
 
 ### Benefits of This Architecture
 
@@ -98,6 +112,39 @@ Individual game files are stored in [`games/`](./games/) directory. Each file co
 | `verificationCount` | integer | Yes | Number of users who verified this mapping (min: 1) |
 | `lastVerified` | string | Yes | ISO 8601 date (YYYY-MM-DD) of last verification |
 | `source` | string | Yes | Always `"community"` for this repository |
+
+## Ignored Programs (`programs/*.json`)
+
+Non-game processes (launchers, browsers, system tools, etc.) are stored separately in the [`programs/`](./programs/) directory. These are automatically ignored by TKit without prompting the user.
+
+**Example: `programs/steam.json`**
+```json
+{
+  "processName": "steam",
+  "normalizedInstallPaths": [
+    "program files (x86)/steam",
+    ".steam/steam"
+  ],
+  "twitchCategoryId": "IGNORE",
+  "twitchCategoryName": "Steam",
+  "category": "launcher",
+  "verificationCount": 1,
+  "lastVerified": "2025-10-13"
+}
+```
+
+### Program Categories
+
+Programs include a `category` field for grouping in the UI:
+- `system` - Operating system processes (explorer.exe, etc.)
+- `launcher` - Game launchers and platforms (Steam, Epic, etc.)
+- `browser` - Web browsers (Chrome, Firefox, etc.)
+- `communication` - Chat/voice apps (Discord, TeamSpeak, etc.)
+- `streaming` - Streaming/recording software (OBS, Streamlabs, etc.)
+- `utility` - General utilities (VS Code, Notepad++, etc.)
+- `anticheat` - Anti-cheat services (BattlEye, EasyAntiCheat, etc.)
+
+See the complete [`programs/README.md`](./programs/README.md) for contributing guidelines.
 
 ## Privacy-Safe Path Tracking
 
@@ -391,7 +438,9 @@ git push origin main
 ### Sync Frequency
 - TKit checks for updates every **6 hours**
 - Can be manually triggered via "Sync Now" in settings
-- Downloads from: `https://raw.githubusercontent.com/evobug-com/tkit-community-mapping/refs/heads/main/mappings.json`
+- Downloads both:
+  - `https://raw.githubusercontent.com/evobug-com/tkit-community-mapping/refs/heads/main/mappings.json`
+  - `https://raw.githubusercontent.com/evobug-com/tkit-community-mapping/refs/heads/main/programs.json`
 
 ### Submission Flow
 
@@ -405,10 +454,10 @@ GitHub REST API
 This Repository
     ↓ (Maintainer reviews + merges to main)
 GitHub Action: Merge Mappings
-    ↓ (Reads all games/*.json)
-    ↓ (Regenerates mappings.json)
+    ↓ (Reads all games/*.json and programs/*.json)
+    ↓ (Regenerates mappings.json and programs.json)
     ↓ (Commits to main)
-mappings.json Updated
+Both JSON Files Updated
     ↓ (6-hour sync cycle)
 All TKit Clients
 ```
@@ -438,13 +487,14 @@ All TKit Clients
 
 This repository is consumed by:
 
-1. **TKit Client** - Downloads `mappings.json` every 6 hours
+1. **TKit Client** - Downloads `mappings.json` and `programs.json` every 6 hours
 2. **Cloudflare Worker** - Creates Pull Requests with new submissions
-3. **Community Scripts** - Parse `mappings.json` for analytics
+3. **Community Scripts** - Parse JSON files for analytics
 
 ### Endpoints
 
-- **Raw JSON**: `https://raw.githubusercontent.com/evobug-com/tkit-community-mapping/main/mappings.json`
+- **Games (Raw JSON)**: `https://raw.githubusercontent.com/evobug-com/tkit-community-mapping/main/mappings.json`
+- **Programs (Raw JSON)**: `https://raw.githubusercontent.com/evobug-com/tkit-community-mapping/main/programs.json`
 - **API (with CORS)**: Use jsDelivr CDN for better caching
 
 ## Support
