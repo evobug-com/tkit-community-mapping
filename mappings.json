@@ -1,8 +1,4 @@
 {
-  "name": "Official TKit Game Mappings",
-  "description": "Community-verified game mappings for automatic Twitch category detection",
-  "isReadOnly": true,
-  "submissionHookUrl": "https://tkit-community-api.siocom.workers.dev?category=game",
   "mappings": [
     {
       "processName": "aimlab_tb",
