@@ -3,6 +3,6 @@
   "normalizedInstallPaths": [
     "program files/bravesoftware/brave-browser/application"
   ],
-  "twitchCategoryId": "-1",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Ignore Process"
 }

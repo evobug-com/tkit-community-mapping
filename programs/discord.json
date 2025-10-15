@@ -1,6 +1,6 @@
 {
   "processName": "discord",
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Discord",
   "category": "communication",
   "verificationCount": 1,

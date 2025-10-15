@@ -17,7 +17,7 @@ Each JSON file represents a program that should be ignored:
     "program files (x86)/steam",
     ".steam/steam"
   ],
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Steam",
   "category": "launcher",
   "verificationCount": 1,
@@ -31,7 +31,7 @@ Each JSON file represents a program that should be ignored:
 |-------|------|----------|-------------|
 | `processName` | string | Yes | Process executable name without `.exe` |
 | `normalizedInstallPaths` | array | No | Common installation paths (privacy-safe) |
-| `twitchCategoryId` | string | Yes | Always `"IGNORE"` for ignored programs |
+| `twitchCategoryId` | number | Yes | Always `-1` for ignored programs |
 | `twitchCategoryName` | string | Yes | Human-readable program name |
 | `category` | string | Yes | Type of program (see categories below) |
 | `verificationCount` | integer | Yes | Number of users who verified (min: 1) |
@@ -70,7 +70,7 @@ Each JSON file represents a program that should be ignored:
 
 1. Create a new JSON file: `programs/{processName}.json`
 2. Use the schema above
-3. Set `twitchCategoryId` to `"IGNORE"`
+3. Set `twitchCategoryId` to `-1` (number, not string)
 4. Choose appropriate `category` from the list
 5. Submit a Pull Request
 
@@ -80,7 +80,7 @@ Each JSON file represents a program that should be ignored:
 ```json
 {
   "processName": "spotify",
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Spotify",
   "category": "utility",
   "verificationCount": 1,

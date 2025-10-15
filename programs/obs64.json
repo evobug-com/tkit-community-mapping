@@ -1,6 +1,6 @@
 {
   "processName": "obs64",
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "OBS Studio",
   "category": "streaming",
   "verificationCount": 1,

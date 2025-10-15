@@ -1,6 +1,6 @@
 {
   "processName": "explorer",
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Windows Explorer",
   "category": "system",
   "verificationCount": 1,

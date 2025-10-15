@@ -1,6 +1,6 @@
 {
   "processName": "chrome",
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Google Chrome",
   "category": "browser",
   "verificationCount": 1,
