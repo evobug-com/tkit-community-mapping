@@ -53,7 +53,7 @@ tkit-community-mapping/
 2. **Ignored Programs** (`programs/*.json`)
    - Non-game processes that should be automatically ignored
    - Includes launchers (Steam, Epic), browsers, system processes, etc.
-   - These use `"twitchCategoryId": "IGNORE"` and include a `category` field
+   - These use `"twitchCategoryId": -1` and include a `category` field
    - See [`programs/README.md`](./programs/README.md) for details
 
 3. **Auto-Generated Files**
@@ -125,7 +125,7 @@ Non-game processes (launchers, browsers, system tools, etc.) are stored separate
     "program files (x86)/steam",
     ".steam/steam"
   ],
-  "twitchCategoryId": "IGNORE",
+  "twitchCategoryId": -1,
   "twitchCategoryName": "Steam",
   "category": "launcher",
   "verificationCount": 1,
