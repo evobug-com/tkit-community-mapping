@@ -29,173 +29,115 @@ jobs:
 
       - name: Merge game mappings and programs
         run: |
-          # Create merge script for games
-          cat > merge-games.js << 'EOF'
+          # Create shared merge script (DRY)
+          cat > merge-mappings.js << 'EOF'
           const fs = require('fs');
           const path = require('path');
 
-          const gamesDir = path.join(__dirname, 'games');
-          const outputFile = path.join(__dirname, 'mappings.json');
-          const indexFile = path.join(__dirname, 'index.json');
+          /**
+           * Merge all JSON files from a directory into a single output file
+           * @param {string} sourceDir - Directory containing individual JSON files (e.g., 'games' or 'programs')
+           * @param {string} outputFile - Output file name (e.g., 'mappings.json' or 'programs.json')
+           * @param {string} typeName - Type name for logging (e.g., 'game' or 'program')
+           * @param {boolean} generateIndex - Whether to generate index.json file
+           */
+          function mergeMappings(sourceDir, outputFile, typeName, generateIndex = false) {
+            const dir = path.join(__dirname, sourceDir);
+            const output = path.join(__dirname, outputFile);
 
-          // Read all JSON files from games/ directory
-          const gameFiles = fs.readdirSync(gamesDir)
-            .filter(file => file.endsWith('.json'))
-            .sort();
+            // Read all JSON files from directory
+            const files = fs.readdirSync(dir)
+              .filter(file => file.endsWith('.json'))
+              .sort();
 
-          const mappings = [];
+            const mappings = [];
 
-          for (const file of gameFiles) {
-            const filePath = path.join(gamesDir, file);
-            try {
-              const content = fs.readFileSync(filePath, 'utf8');
-              const mapping = JSON.parse(content);
+            for (const file of files) {
+              const filePath = path.join(dir, file);
+              try {
+                const content = fs.readFileSync(filePath, 'utf8');
+                const mapping = JSON.parse(content);
 
-              // Validate required fields
-              if (!mapping.processName || !mapping.twitchCategoryId || !mapping.twitchCategoryName) {
-                console.error(`❌ Invalid mapping in ${file}: missing required fields`);
+                // Validate required fields
+                if (!mapping.processName || !mapping.twitchCategoryId || !mapping.twitchCategoryName) {
+                  console.error(`❌ Invalid ${typeName} in ${file}: missing required fields`);
+                  process.exit(1);
+                }
+
+                mappings.push(mapping);
+                console.log(`✅ Loaded ${file}: ${mapping.processName} → ${mapping.twitchCategoryName}`);
+              } catch (error) {
+                console.error(`❌ Error reading ${file}:`, error.message);
                 process.exit(1);
               }
+            }
 
-              mappings.push(mapping);
-              console.log(`✅ Loaded ${file}: ${mapping.processName} → ${mapping.twitchCategoryName}`);
-            } catch (error) {
-              console.error(`❌ Error reading ${file}:`, error.message);
-              process.exit(1);
+            // Sort by processName (case-insensitive)
+            mappings.sort((a, b) =>
+              a.processName.toLowerCase().localeCompare(b.processName.toLowerCase())
+            );
+
+            // Read existing output file to preserve metadata
+            let metadata = {};
+            if (fs.existsSync(output)) {
+              try {
+                const existing = JSON.parse(fs.readFileSync(output, 'utf8'));
+                // Extract metadata fields (everything except 'mappings')
+                const { mappings: _, ...rest } = existing;
+                metadata = rest;
+              } catch (error) {
+                console.warn(`⚠️ Could not read existing ${outputFile} metadata`);
+              }
+            }
+
+            // Create final structure with preserved metadata
+            const outputData = {
+              ...metadata,
+              mappings: mappings
+            };
+
+            // Write to output file
+            fs.writeFileSync(output, JSON.stringify(outputData, null, 2) + '\n', 'utf8');
+            console.log(`\n🎉 Successfully merged ${mappings.length} ${typeName} mappings into ${outputFile}`);
+
+            // Generate index.json if requested
+            if (generateIndex) {
+              const indexFile = path.join(__dirname, 'index.json');
+              let existingIndex = { formatVersion: '1' };
+              if (fs.existsSync(indexFile)) {
+                try {
+                  existingIndex = JSON.parse(fs.readFileSync(indexFile, 'utf8'));
+                } catch (error) {
+                  console.warn('⚠️ Could not read existing index.json, using defaults');
+                }
+              }
+
+              const indexData = {
+                lastUpdate: Date.now(),
+                formatVersion: existingIndex.formatVersion || '1'
+              };
+              fs.writeFileSync(indexFile, JSON.stringify(indexData, null, 2) + '\n', 'utf8');
+              console.log(`📋 Updated index.json with timestamp: ${new Date(indexData.lastUpdate).toISOString()}`);
             }
           }
 
-          // Sort by processName (case-insensitive)
-          mappings.sort((a, b) =>
-            a.processName.toLowerCase().localeCompare(b.processName.toLowerCase())
-          );
+          // Parse command line arguments
+          const args = process.argv.slice(2);
+          const sourceDir = args[0];
+          const outputFile = args[1];
+          const typeName = args[2];
+          const generateIndex = args[3] === 'true';
 
-          // Read existing mappings.json to preserve metadata
-          let metadata = {};
-          if (fs.existsSync(outputFile)) {
-            try {
-              const existing = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
-              // Extract metadata fields (everything except 'mappings')
-              const { mappings: _, ...rest } = existing;
-              metadata = rest;
-            } catch (error) {
-              console.warn('⚠️ Could not read existing mappings.json metadata');
-            }
-          }
-
-          // Create final structure with preserved metadata
-          const output = {
-            ...metadata,
-            mappings: mappings
-          };
-
-          // Write to mappings.json
-          fs.writeFileSync(outputFile, JSON.stringify(output, null, 2) + '\n', 'utf8');
-
-          // Write to index.json
-          let existingIndex = { formatVersion: '1' };
-          if (fs.existsSync(indexFile)) {
-            try {
-              existingIndex = JSON.parse(fs.readFileSync(indexFile, 'utf8'));
-            } catch (error) {
-              console.warn('⚠️ Could not read existing index.json, using defaults');
-            }
-          }
-
-          const indexData = {
-            lastUpdate: Date.now(),
-            formatVersion: existingIndex.formatVersion || '1'
-          };
-          fs.writeFileSync(indexFile, JSON.stringify(indexData, null, 2) + '\n', 'utf8');
-
-          console.log(`\n🎉 Successfully merged ${mappings.length} game mappings into mappings.json`);
-          console.log(`📋 Updated index.json with timestamp: ${new Date(indexData.lastUpdate).toISOString()}`);
+          mergeMappings(sourceDir, outputFile, typeName, generateIndex);
           EOF
 
-          # Create merge script for programs
-          cat > merge-programs.js << 'EOF'
-          const fs = require('fs');
-          const path = require('path');
-
-          const programsDir = path.join(__dirname, 'programs');
-          const outputFile = path.join(__dirname, 'programs.json');
-
-          // Read all JSON files from programs/ directory
-          const programFiles = fs.readdirSync(programsDir)
-            .filter(file => file.endsWith('.json'))
-            .sort();
-
-          const programs = [];
-
-          for (const file of programFiles) {
-            const filePath = path.join(programsDir, file);
-            try {
-              const content = fs.readFileSync(filePath, 'utf8');
-              const program = JSON.parse(content);
-
-              // Validate required fields
-              if (!program.processName || !program.twitchCategoryId || !program.twitchCategoryName) {
-                console.error(`❌ Invalid program in ${file}: missing required fields`);
-                process.exit(1);
-              }
-
-              // Validate IGNORE category
-              if (program.twitchCategoryId !== 'IGNORE') {
-                console.error(`❌ Invalid program in ${file}: twitchCategoryId must be "IGNORE"`);
-                process.exit(1);
-              }
-
-              // Validate category field
-              if (!program.category) {
-                console.error(`❌ Invalid program in ${file}: missing category field`);
-                process.exit(1);
-              }
-
-              programs.push(program);
-              console.log(`✅ Loaded ${file}: ${program.processName} (${program.category})`);
-            } catch (error) {
-              console.error(`❌ Error reading ${file}:`, error.message);
-              process.exit(1);
-            }
-          }
-
-          // Sort by processName (case-insensitive)
-          programs.sort((a, b) =>
-            a.processName.toLowerCase().localeCompare(b.processName.toLowerCase())
-          );
-
-          // Read existing programs.json to preserve metadata
-          let metadata = {};
-          if (fs.existsSync(outputFile)) {
-            try {
-              const existing = JSON.parse(fs.readFileSync(outputFile, 'utf8'));
-              // Extract metadata fields (everything except 'mappings')
-              const { mappings: _, ...rest } = existing;
-              metadata = rest;
-            } catch (error) {
-              console.warn('⚠️ Could not read existing programs.json metadata');
-            }
-          }
-
-          // Create final structure with preserved metadata
-          const output = {
-            ...metadata,
-            mappings: programs
-          };
-
-          // Write to programs.json
-          fs.writeFileSync(outputFile, JSON.stringify(output, null, 2) + '\n', 'utf8');
-
-          console.log(`\n🎉 Successfully merged ${programs.length} programs into programs.json`);
-          EOF
-
-          # Run merge scripts
+          # Run merge for games (with index.json generation)
           echo "📦 Merging game mappings..."
-          node merge-games.js
+          node merge-mappings.js games mappings.json game true
 
           echo ""
           echo "📦 Merging programs..."
-          node merge-programs.js
+          node merge-mappings.js programs programs.json program false
 
           # Check if mappings.json, programs.json, or index.json changed
           if git diff --quiet mappings.json programs.json index.json; then
