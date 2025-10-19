@@ -13,11 +13,6 @@
       "twitchCategoryName": "Ignore Process"
     },
     {
-      "processName": "brave",
-      "twitchCategoryId": "-1",
-      "twitchCategoryName": "Ignore Process"
-    },
-    {
       "processName": "chrome",
       "twitchCategoryId": -1,
       "twitchCategoryName": "Google Chrome",
@@ -55,7 +50,7 @@
     },
     {
       "processName": "lghub",
-      "twitchCategoryId": "-1",
+      "twitchCategoryId": -1,
       "twitchCategoryName": "Ignore Process"
     },
     {
