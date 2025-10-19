@@ -15,18 +15,12 @@
     {
       "processName": "chrome",
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Google Chrome",
-      "category": "browser",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "Google Chrome"
     },
     {
       "processName": "discord",
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Discord",
-      "category": "communication",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "Discord"
     },
     {
       "processName": "epicgameslauncher",
@@ -35,31 +29,22 @@
         "epic games/launcher"
       ],
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Epic Games Launcher",
-      "category": "launcher",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "Epic Games Launcher"
     },
     {
       "processName": "explorer",
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Windows Explorer",
-      "category": "system",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "Windows Explorer"
     },
     {
       "processName": "lghub",
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Ignore Process"
+      "twitchCategoryName": "Logitech G Hub"
     },
     {
       "processName": "obs64",
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "OBS Studio",
-      "category": "streaming",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "OBS Studio"
     },
     {
       "processName": "socialclub",
@@ -67,10 +52,7 @@
         "rockstar games/social club"
       ],
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Rockstar Social Club",
-      "category": "launcher",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "Rockstar Social Club"
     },
     {
       "processName": "steam",
@@ -81,10 +63,7 @@
         ".local/share/steam"
       ],
       "twitchCategoryId": "-1",
-      "twitchCategoryName": "Steam",
-      "category": "launcher",
-      "verificationCount": 1,
-      "lastVerified": "2025-10-13"
+      "twitchCategoryName": "Steam"
     }
   ]
 }
