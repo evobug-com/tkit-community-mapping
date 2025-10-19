@@ -9,12 +9,12 @@
       "normalizedInstallPaths": [
         "program files/bravesoftware/brave-browser/application"
       ],
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Ignore Process"
     },
     {
       "processName": "chrome",
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Google Chrome",
       "category": "browser",
       "verificationCount": 1,
@@ -22,7 +22,7 @@
     },
     {
       "processName": "discord",
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Discord",
       "category": "communication",
       "verificationCount": 1,
@@ -34,7 +34,7 @@
         "program files (x86)/epic games/launcher",
         "epic games/launcher"
       ],
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Epic Games Launcher",
       "category": "launcher",
       "verificationCount": 1,
@@ -42,7 +42,7 @@
     },
     {
       "processName": "explorer",
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Windows Explorer",
       "category": "system",
       "verificationCount": 1,
@@ -50,12 +50,12 @@
     },
     {
       "processName": "lghub",
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Ignore Process"
     },
     {
       "processName": "obs64",
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "OBS Studio",
       "category": "streaming",
       "verificationCount": 1,
@@ -66,7 +66,7 @@
       "normalizedInstallPaths": [
         "rockstar games/social club"
       ],
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Rockstar Social Club",
       "category": "launcher",
       "verificationCount": 1,
@@ -80,7 +80,7 @@
         ".steam/steam",
         ".local/share/steam"
       ],
-      "twitchCategoryId": -1,
+      "twitchCategoryId": "-1",
       "twitchCategoryName": "Steam",
       "category": "launcher",
       "verificationCount": 1,
