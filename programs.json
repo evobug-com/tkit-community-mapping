@@ -13,6 +13,11 @@
       "twitchCategoryName": "Ignore Process"
     },
     {
+      "processName": "brave",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
+    },
+    {
       "processName": "chrome",
       "twitchCategoryId": -1,
       "twitchCategoryName": "Google Chrome",
@@ -47,6 +52,11 @@
       "category": "system",
       "verificationCount": 1,
       "lastVerified": "2025-10-13"
+    },
+    {
+      "processName": "lghub",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
     },
     {
       "processName": "obs64",
