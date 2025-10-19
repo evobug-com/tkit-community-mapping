@@ -14,15 +14,14 @@ This repository stores crowdsourced mappings that automatically detect which gam
 2. **Unknown Game Detection**: When you play an unmapped game, TKit shows a dialog
 3. **Easy Contribution**: Search for the correct Twitch category and click "Save & Contribute"
 4. **Automatic PR**: TKit creates a Pull Request here with your mapping
-5. **Verification**: If the mapping exists, your submission adds a verification (increases confidence)
-6. **Everyone Benefits**: All TKit users get updated mappings within 6 hours
+5. **Everyone Benefits**: All TKit users get updated mappings within 6 hours
 
 ### For Contributors
 
-When you submit or verify a mapping through TKit:
-- **New Mapping**: Creates a Pull Request adding the game to `mappings.json`
-- **Existing Mapping**: Creates a PR incrementing `verificationCount` and merging installation paths
-- **Auto-Merge**: PRs are reviewed and merged by maintainers
+When you submit a mapping through TKit:
+- **New Mapping**: Creates a Pull Request adding the game to the repository
+- **Existing Mapping**: Creates a PR merging installation paths if new path detected
+- **Auto-Review**: PRs are reviewed and merged by maintainers
 - **Community Benefit**: Updated mappings sync to all TKit users automatically
 
 ## Repository Structure
@@ -53,7 +52,7 @@ tkit-community-mapping/
 2. **Ignored Programs** (`programs/*.json`)
    - Non-game processes that should be automatically ignored
    - Includes launchers (Steam, Epic), browsers, system processes, etc.
-   - These use `"twitchCategoryId": -1` and include a `category` field
+   - These use `"twitchCategoryId": "-1"`
    - See [`programs/README.md`](./programs/README.md) for details
 
 3. **Auto-Generated Files**
@@ -94,10 +93,7 @@ Individual game files are stored in [`games/`](./games/) directory. Each file co
     ".steam/steam/steamapps/common/dota 2"
   ],
   "twitchCategoryId": "29595",
-  "twitchCategoryName": "Dota 2",
-  "verificationCount": 5,
-  "lastVerified": "2025-10-12",
-  "source": "community"
+  "twitchCategoryName": "Dota 2"
 }
 ```
 
@@ -107,11 +103,8 @@ Individual game files are stored in [`games/`](./games/) directory. Each file co
 |-------|------|----------|-------------|
 | `processName` | string | Yes | Game executable name without `.exe` extension (e.g., `dota2`) |
 | `normalizedInstallPaths` | array | No | Privacy-safe installation paths (see Privacy section) |
-| `twitchCategoryId` | string | Yes | Twitch category ID from Twitch API |
+| `twitchCategoryId` | string | Yes | Twitch category ID from Twitch API (e.g., `"29595"`) |
 | `twitchCategoryName` | string | Yes | Human-readable game name |
-| `verificationCount` | integer | Yes | Number of users who verified this mapping (min: 1) |
-| `lastVerified` | string | Yes | ISO 8601 date (YYYY-MM-DD) of last verification |
-| `source` | string | Yes | Always `"community"` for this repository |
 
 ## Ignored Programs (`programs/*.json`)
 
@@ -125,24 +118,10 @@ Non-game processes (launchers, browsers, system tools, etc.) are stored separate
     "program files (x86)/steam",
     ".steam/steam"
   ],
-  "twitchCategoryId": -1,
-  "twitchCategoryName": "Steam",
-  "category": "launcher",
-  "verificationCount": 1,
-  "lastVerified": "2025-10-13"
+  "twitchCategoryId": "-1",
+  "twitchCategoryName": "Steam"
 }
 ```
-
-### Program Categories
-
-Programs include a `category` field for grouping in the UI:
-- `system` - Operating system processes (explorer.exe, etc.)
-- `launcher` - Game launchers and platforms (Steam, Epic, etc.)
-- `browser` - Web browsers (Chrome, Firefox, etc.)
-- `communication` - Chat/voice apps (Discord, TeamSpeak, etc.)
-- `streaming` - Streaming/recording software (OBS, Streamlabs, etc.)
-- `utility` - General utilities (VS Code, Notepad++, etc.)
-- `anticheat` - Anti-cheat services (BattlEye, EasyAntiCheat, etc.)
 
 See the complete [`programs/README.md`](./programs/README.md) for contributing guidelines.
 
@@ -201,10 +180,7 @@ If you prefer to submit manually:
      "processName": "game",
      "normalizedInstallPaths": ["steamapps/common/game name"],
      "twitchCategoryId": "12345",
-     "twitchCategoryName": "Game Name",
-     "verificationCount": 1,
-     "lastVerified": "2025-10-12",
-     "source": "community"
+     "twitchCategoryName": "Game Name"
    }
    ```
 3. Submit a Pull Request with title: `Add mapping: game → Game Name`
@@ -216,14 +192,6 @@ If you prefer to submit manually:
 - Search for the game
 - Look for API calls to `gql` endpoint
 - Find `categoryID` in the response
-
-### Verifying Existing Mappings
-
-Help improve accuracy by verifying existing mappings:
-
-1. In TKit, when it correctly detects your game, click "✓ Verify"
-2. This increments `verificationCount` and updates `lastVerified`
-3. Helps prioritize accurate mappings
 
 ## Quality Guidelines
 
@@ -243,7 +211,7 @@ Help improve accuracy by verifying existing mappings:
 
 ## Path Merging
 
-When multiple users submit/verify the same game from different platforms, the Cloudflare Worker automatically merges paths within the same game file:
+When multiple users submit the same game from different platforms, the Cloudflare Worker automatically merges paths within the same game file:
 
 **Example: `games/game.json` evolution**
 
@@ -252,14 +220,16 @@ When multiple users submit/verify the same game from different platforms, the Cl
 {
   "processName": "game",
   "normalizedInstallPaths": ["steamapps/common/game"],
-  "verificationCount": 1
+  "twitchCategoryId": "12345",
+  "twitchCategoryName": "Game Name"
 }
 
-// User 2 verifies Epic version → Cloudflare Worker merges paths
+// User 2 submits Epic version → Cloudflare Worker merges paths
 {
   "processName": "game",
   "normalizedInstallPaths": ["steamapps/common/game", "epic games/game"],
-  "verificationCount": 2
+  "twitchCategoryId": "12345",
+  "twitchCategoryName": "Game Name"
 }
 ```
 
@@ -287,10 +257,7 @@ games/
   "processName": "game",
   "normalizedInstallPaths": ["steamapps/common/battlefield 2042"],
   "twitchCategoryId": "512710",
-  "twitchCategoryName": "Battlefield 2042",
-  "verificationCount": 3,
-  "lastVerified": "2025-10-12",
-  "source": "community"
+  "twitchCategoryName": "Battlefield 2042"
 }
 ```
 
@@ -300,10 +267,7 @@ games/
   "processName": "game",
   "normalizedInstallPaths": ["epic games/fortnite"],
   "twitchCategoryId": "33214",
-  "twitchCategoryName": "Fortnite",
-  "verificationCount": 5,
-  "lastVerified": "2025-10-12",
-  "source": "community"
+  "twitchCategoryName": "Fortnite"
 }
 ```
 
@@ -479,7 +443,6 @@ All TKit Clients
 
 <!-- Update these monthly -->
 - **Total Mappings:** Check [`mappings.json`](./mappings.json)
-- **Most Verified:** TBD
 - **Platforms Covered:** Windows, Linux
 - **Contributors:** [See contributors](https://github.com/evobug-com/tkit-community-mapping/graphs/contributors)
 

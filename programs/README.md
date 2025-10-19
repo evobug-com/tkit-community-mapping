@@ -17,11 +17,8 @@ Each JSON file represents a program that should be ignored:
     "program files (x86)/steam",
     ".steam/steam"
   ],
-  "twitchCategoryId": -1,
-  "twitchCategoryName": "Steam",
-  "category": "launcher",
-  "verificationCount": 1,
-  "lastVerified": "2025-10-13"
+  "twitchCategoryId": "-1",
+  "twitchCategoryName": "Steam"
 }
 ```
 
@@ -31,21 +28,8 @@ Each JSON file represents a program that should be ignored:
 |-------|------|----------|-------------|
 | `processName` | string | Yes | Process executable name without `.exe` |
 | `normalizedInstallPaths` | array | No | Common installation paths (privacy-safe) |
-| `twitchCategoryId` | number | Yes | Always `-1` for ignored programs |
+| `twitchCategoryId` | string | Yes | Always `"-1"` for ignored programs |
 | `twitchCategoryName` | string | Yes | Human-readable program name |
-| `category` | string | Yes | Type of program (see categories below) |
-| `verificationCount` | integer | Yes | Number of users who verified (min: 1) |
-| `lastVerified` | string | Yes | ISO 8601 date (YYYY-MM-DD) |
-
-## Categories
-
-- `system`: Operating system processes (explorer.exe, dwm.exe, etc.)
-- `launcher`: Game launchers and platforms (Steam, Epic, Origin, etc.)
-- `browser`: Web browsers (Chrome, Firefox, Edge, etc.)
-- `communication`: Chat and voice apps (Discord, TeamSpeak, etc.)
-- `streaming`: Streaming/recording software (OBS, Streamlabs, etc.)
-- `utility`: General utilities (Notepad++, VS Code, etc.)
-- `anticheat`: Anti-cheat services (BattlEye, EasyAntiCheat, etc.)
 
 ## How It Works
 
@@ -53,7 +37,6 @@ Each JSON file represents a program that should be ignored:
 2. TKit downloads both `mappings.json` (games) and `programs.json` during sync
 3. When a process is detected, TKit checks the programs list first
 4. If matched, the process is automatically ignored without showing any dialog
-5. In the UI, ignored programs are displayed in a separate "Software" category
 
 ## Contributing
 
@@ -70,9 +53,8 @@ Each JSON file represents a program that should be ignored:
 
 1. Create a new JSON file: `programs/{processName}.json`
 2. Use the schema above
-3. Set `twitchCategoryId` to `-1` (number, not string)
-4. Choose appropriate `category` from the list
-5. Submit a Pull Request
+3. Set `twitchCategoryId` to `"-1"` (string)
+4. Submit a Pull Request
 
 ### Example: Adding Spotify
 
@@ -80,11 +62,8 @@ Each JSON file represents a program that should be ignored:
 ```json
 {
   "processName": "spotify",
-  "twitchCategoryId": -1,
-  "twitchCategoryName": "Spotify",
-  "category": "utility",
-  "verificationCount": 1,
-  "lastVerified": "2025-10-13"
+  "twitchCategoryId": "-1",
+  "twitchCategoryName": "Spotify"
 }
 ```
 
@@ -113,7 +92,6 @@ The GitHub Action automatically:
 1. Reads all `programs/*.json` files
 2. Generates `programs.json` with all ignored programs
 3. TKit clients download this during sync
-4. Programs are displayed in a separate category in the UI
 
 ## Privacy
 
