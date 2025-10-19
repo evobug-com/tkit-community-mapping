@@ -131,6 +131,11 @@
       "lastVerified": "2025-10-13"
     },
     {
+      "processName": "kopigame-win64-shipping",
+      "twitchCategoryId": "1374668813",
+      "twitchCategoryName": "Kopi"
+    },
+    {
       "processName": "lethal company",
       "normalizedInstallPaths": [
         "steamapps/common/lethal company"
