@@ -121,6 +121,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "hollow knight silksong",
+      "twitchCategoryId": "511391",
+      "twitchCategoryName": "Hollow Knight: Silksong"
+    },
+    {
       "processName": "kfgame",
       "normalizedInstallPaths": [
         "steamapps/common/killingfloor2/binaries/win64"
