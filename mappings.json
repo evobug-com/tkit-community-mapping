@@ -12,6 +12,11 @@
       "lastVerified": "2025-10-14"
     },
     {
+      "processName": "altf4_f-win64-shipping",
+      "twitchCategoryId": "791968461",
+      "twitchCategoryName": "ALTF4"
+    },
+    {
       "processName": "bf2042",
       "normalizedInstallPaths": [
         "steamapps/common/battlefield 2042"
