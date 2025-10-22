@@ -167,6 +167,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "ninjagaiden4-steam",
+      "twitchCategoryId": "252001732",
+      "twitchCategoryName": "Ninja Gaiden 4"
+    },
+    {
       "processName": "nuclearnightmare-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/nuclear nightmare/nuclearnightmare/binaries/win64"
