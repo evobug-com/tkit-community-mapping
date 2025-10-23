@@ -258,6 +258,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "valorant-win64-shipping",
+      "twitchCategoryId": "516575",
+      "twitchCategoryName": "VALORANT"
+    },
+    {
       "processName": "witcher3",
       "normalizedInstallPaths": [
         "steamapps/common/the witcher 3/bin/x64_dx12"
