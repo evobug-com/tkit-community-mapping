@@ -56,6 +56,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "chainedtogether-win64-shipping",
+      "twitchCategoryId": "14842174",
+      "twitchCategoryName": "Chained Together"
+    },
+    {
       "processName": "cs2",
       "normalizedInstallPaths": [
         "steamapps/common/counter-strike global offensive/game/bin/win64"
