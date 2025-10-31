@@ -89,6 +89,11 @@
       "processName": "tkit",
       "twitchCategoryId": "-1",
       "twitchCategoryName": "Ignore Process"
+    },
+    {
+      "processName": "trucky",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
     }
   ]
 }
