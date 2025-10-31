@@ -47,6 +47,11 @@
       "twitchCategoryName": "OBS Studio"
     },
     {
+      "processName": "opentrack",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
+    },
+    {
       "processName": "opera",
       "twitchCategoryId": "-1",
       "twitchCategoryName": "Ignore Process"
