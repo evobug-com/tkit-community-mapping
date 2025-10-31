@@ -241,6 +241,11 @@
       "source": "community"
     },
     {
+      "processName": "ride-win64-shipping",
+      "twitchCategoryId": "1517377137",
+      "twitchCategoryName": "RV There Yet?"
+    },
+    {
       "processName": "spider-man2",
       "twitchCategoryId": "1967084783",
       "twitchCategoryName": "Marvel's Spider-Man 2",
