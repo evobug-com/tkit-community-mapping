@@ -13,6 +13,11 @@
       "twitchCategoryName": "Ignore Process"
     },
     {
+      "processName": "chatterino",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
+    },
+    {
       "processName": "chrome",
       "twitchCategoryId": "-1",
       "twitchCategoryName": "Google Chrome"
