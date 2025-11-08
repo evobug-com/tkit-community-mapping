@@ -278,6 +278,11 @@
       "lastVerified": "2025-10-13"
     },
     {
+      "processName": "worldoftanks",
+      "twitchCategoryId": "27546",
+      "twitchCategoryName": "World of Tanks"
+    },
+    {
       "processName": "yakisoba-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/starshiptroopersextermination/yakisoba/binaries/win64"
