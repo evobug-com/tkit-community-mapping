@@ -167,6 +167,11 @@
       "source": "community"
     },
     {
+      "processName": "minecraft",
+      "twitchCategoryId": "27471",
+      "twitchCategoryName": "Minecraft"
+    },
+    {
       "processName": "nightfallclient-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/nightfall/nightfall/binaries/win64"
