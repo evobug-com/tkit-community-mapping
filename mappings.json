@@ -278,6 +278,11 @@
       "twitchCategoryName": "VALORANT"
     },
     {
+      "processName": "wgc",
+      "twitchCategoryId": "27546",
+      "twitchCategoryName": "World of Tanks"
+    },
+    {
       "processName": "witcher3",
       "normalizedInstallPaths": [
         "steamapps/common/the witcher 3/bin/x64_dx12"

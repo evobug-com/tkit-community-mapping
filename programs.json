@@ -96,6 +96,11 @@
       "twitchCategoryName": "Steam"
     },
     {
+      "processName": "steamwebhelper",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
+    },
+    {
       "processName": "tkit",
       "twitchCategoryId": "-1",
       "twitchCategoryName": "Ignore Process"
