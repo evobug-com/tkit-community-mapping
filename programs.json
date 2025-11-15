@@ -67,6 +67,11 @@
       "twitchCategoryName": "Ignore Process"
     },
     {
+      "processName": "shellhost",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
+    },
+    {
       "processName": "socialclub",
       "normalizedInstallPaths": [
         "rockstar games/social club"
