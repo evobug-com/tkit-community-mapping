@@ -81,6 +81,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "deadbydaylight-egs-shipping",
+      "twitchCategoryId": "491487",
+      "twitchCategoryName": "Dead by Daylight"
+    },
+    {
       "processName": "drg survivor",
       "normalizedInstallPaths": [
         "steamapps/common/deep rock survivor"
