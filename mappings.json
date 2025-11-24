@@ -17,6 +17,11 @@
       "twitchCategoryName": "ALTF4"
     },
     {
+      "processName": "aoe2de_s",
+      "twitchCategoryId": "13389",
+      "twitchCategoryName": "Age of Empires II"
+    },
+    {
       "processName": "bf2042",
       "normalizedInstallPaths": [
         "steamapps/common/battlefield 2042"
