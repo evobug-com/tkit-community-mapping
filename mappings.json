@@ -71,6 +71,11 @@
       "twitchCategoryName": "Chained Together"
     },
     {
+      "processName": "civilizationvi",
+      "twitchCategoryId": "492553",
+      "twitchCategoryName": "Sid Meier's Civilization VI"
+    },
+    {
       "processName": "cs2",
       "normalizedInstallPaths": [
         "steamapps/common/counter-strike global offensive/game/bin/win64"
