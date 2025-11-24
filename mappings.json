@@ -221,6 +221,11 @@
       "source": "community"
     },
     {
+      "processName": "pioneergame",
+      "twitchCategoryId": "464339927",
+      "twitchCategoryName": "ARC Raiders"
+    },
+    {
       "processName": "projectunknown-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/beast management/projectunknown/binaries/win64"
