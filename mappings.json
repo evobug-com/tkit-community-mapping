@@ -182,6 +182,11 @@
       "source": "community"
     },
     {
+      "processName": "marblesonstream-win64-shipping",
+      "twitchCategoryId": "509511",
+      "twitchCategoryName": "Marbles on Stream"
+    },
+    {
       "processName": "metalstorm",
       "twitchCategoryId": "1114134903",
       "twitchCategoryName": "Metalstorm"
