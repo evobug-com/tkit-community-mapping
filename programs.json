@@ -62,6 +62,11 @@
       "twitchCategoryName": "Ignore Process"
     },
     {
+      "processName": "overwolf",
+      "twitchCategoryId": "-1",
+      "twitchCategoryName": "Ignore Process"
+    },
+    {
       "processName": "redlauncher",
       "twitchCategoryId": "-1",
       "twitchCategoryName": "Ignore Process"
