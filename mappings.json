@@ -131,6 +131,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "golf with your friends",
+      "twitchCategoryId": "491381",
+      "twitchCategoryName": "Golf With Your Friends"
+    },
+    {
       "processName": "gta5_enhanced",
       "normalizedInstallPaths": [
         "steamapps/common/grand theft auto v enhanced"
