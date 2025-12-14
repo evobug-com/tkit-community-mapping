@@ -5,6 +5,11 @@
   "submissionHookUrl": "https://tkit-community-api.siocom.workers.dev?category=game",
   "mappings": [
     {
+      "processName": "aces",
+      "twitchCategoryId": "66366",
+      "twitchCategoryName": "War Thunder"
+    },
+    {
       "processName": "aimlab_tb",
       "twitchCategoryId": "503456",
       "twitchCategoryName": "Aimlabs",
