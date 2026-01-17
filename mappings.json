@@ -338,6 +338,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "valheim",
+      "twitchCategoryId": "508455",
+      "twitchCategoryName": "Valheim"
+    },
+    {
       "processName": "valorant-win64-shipping",
       "twitchCategoryId": "516575",
       "twitchCategoryName": "VALORANT"
