@@ -186,6 +186,11 @@
       "twitchCategoryName": "Hollow Knight: Silksong"
     },
     {
+      "processName": "jumpking",
+      "twitchCategoryId": "512070",
+      "twitchCategoryName": "Jump King"
+    },
+    {
       "processName": "kfgame",
       "normalizedInstallPaths": [
         "steamapps/common/killingfloor2/binaries/win64"
