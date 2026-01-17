@@ -111,6 +111,11 @@
       "twitchCategoryName": "Dead by Daylight"
     },
     {
+      "processName": "dishonored",
+      "twitchCategoryId": "32156",
+      "twitchCategoryName": "Dishonored"
+    },
+    {
       "processName": "dontscreamtogether-win64-shipping",
       "twitchCategoryId": "905232303",
       "twitchCategoryName": "DON'T SCREAM TOGETHER"
