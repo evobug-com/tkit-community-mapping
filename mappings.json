@@ -313,6 +313,11 @@
       "lastVerified": "2025-10-13"
     },
     {
+      "processName": "re0hd",
+      "twitchCategoryId": "9402",
+      "twitchCategoryName": "Resident Evil Zero"
+    },
+    {
       "processName": "readyornotsteam-win64-shipping",
       "normalizedInstallPaths": [
         "steamapps/common/ready or not/readyornot/binaries/win64"
