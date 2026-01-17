@@ -71,6 +71,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "buckshot roulette",
+      "twitchCategoryId": "1010083318",
+      "twitchCategoryName": "Buckshot Roulette"
+    },
+    {
       "processName": "chainedtogether-win64-shipping",
       "twitchCategoryId": "14842174",
       "twitchCategoryName": "Chained Together"
