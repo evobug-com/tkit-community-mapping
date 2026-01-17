@@ -146,6 +146,11 @@
       "lastVerified": "2025-10-12"
     },
     {
+      "processName": "fortniteclient-win64-shipping",
+      "twitchCategoryId": "33214",
+      "twitchCategoryName": "Fortnite"
+    },
+    {
       "processName": "golf with your friends",
       "twitchCategoryId": "491381",
       "twitchCategoryName": "Golf With Your Friends"
